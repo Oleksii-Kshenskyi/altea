@@ -3,5 +3,10 @@ name = "altea"
 version = "0.0.0"
 edition = "2021"
 
+[[bin]]
+name = "play"
+path = "src/playground/mod.rs"
+
+
 [dependencies]
-bevy = "0.15.0"
+bevy = "0.15.3"
