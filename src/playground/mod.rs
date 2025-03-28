@@ -13,7 +13,16 @@ use bevy::{
     window::{PresentMode, WindowResolution},
 };
 
+use altea::engine::board::BevyBoardPlugin;
+use altea::engine::config::*;
 use altea::simulation::config::*;
+
+fn setup_camera(mut commands: Commands, mut windows: Query<&mut Window>) {
+    // this camera renders whatever is on `PIXEL_PERFECT_LAYERS` to the canvas
+    commands.spawn((Camera2d, Msaa::Sample8));
+    let mut main_window = windows.single_mut();
+    main_window.set_maximized(true);
+}
 
 fn main() {
     App::new()
@@ -25,14 +34,8 @@ fn main() {
             }),
             ..Default::default()
         }))
-        .insert_resource(ClearColor(Color::srgb(0.15, 0.15, 0.15)))
+        .add_plugins(BevyBoardPlugin)
+        .insert_resource(ClearColor(ALTEA_BACKGROUND_COLOR))
         .add_systems(Startup, setup_camera)
         .run();
-}
-
-fn setup_camera(mut commands: Commands, mut windows: Query<&mut Window>) {
-    // this camera renders whatever is on `PIXEL_PERFECT_LAYERS` to the canvas
-    commands.spawn((Camera2d, Msaa::Sample8));
-    let mut main_window = windows.single_mut();
-    main_window.set_maximized(true);
 }
