@@ -3,4 +3,5 @@ pub const SCREEN_HEIGHT: f32 = 1080.;
 
 pub const TILE_COUNT: usize = 16;
 pub const TILE_SIZE: f32 = 50.;
+pub const TILE_MARGIN: f32 = 3.;
 pub const MAP_SIZE: usize = TILE_COUNT * TILE_COUNT;
